@@ -1,0 +1,56 @@
+.home-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.home-content {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.home-logo {
+  width: 520px;
+  max-width: 90%;
+}
+
+.home-subtitle {
+  margin: 20px 0 60px;
+  font-size: 28px;
+  color: #10385f;
+}
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.button {
+  width: 220px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #1689d9;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary-button {
+  background-color: #1689d9;
+  color: white;
+}
+
+.secondary-button {
+  background-color: white;
+  color: #1689d9;
+}
+
+.button:hover {
+  opacity: 0.85;
+}

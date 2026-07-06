@@ -1,0 +1,83 @@
+<main class="level-page">
+  <section class="level-map">
+    <header class="top">
+      <div class="top-left">
+        <img
+          src="/Icons/CodeQuester.png"
+          alt="CodeQuester logo"
+          class="logo"
+        />
+
+        <select (change)="switchLanguage($event)">
+          @for (language of languages; track language) {
+            <option [value]="language" [selected]="language === chosenLanguage">
+              {{ language }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <img
+        [src]="getLanguageLogo()"
+        [alt]="chosenLanguage + ' logo'"
+        class="language-logo"
+      />
+    </header>
+
+    <section class="levels">
+      <div class="level-content">
+        <div class="level-row">
+          @for (level of getTopLevels(); track level.id) {
+            <a
+              class="level"
+              [class.locked]="!level.unlocked"
+              [class.unlocked]="level.unlocked"
+              [class.completed]="level.completed"
+              [routerLink]="level.unlocked ? ['/levels', chosenLanguage, level.id] : null"
+            >
+              {{ level.id }}
+
+              <img
+                [src]="getStatusIcon(level)"
+                [alt]="getStatusText(level)"
+                [class.status-icon]="level.unlocked"
+                [class.lock-icon]="!level.unlocked"
+              />
+            </a>
+
+            @if (level.id !== 4) {
+              <p class="arrow">→</p>
+            }
+          }
+        </div>
+
+        <div class="arrow-down">↓</div>
+
+        <div class="level-row">
+          @for (level of getBottomLevels(); track level.id) {
+            <a
+              class="level"
+              [class.locked]="!level.unlocked"
+              [class.unlocked]="level.unlocked"
+              [class.completed]="level.completed"
+              [routerLink]="level.unlocked ? ['/levels', chosenLanguage, level.id] : null"
+            >
+              {{ level.id }}
+
+              <img
+                [src]="getStatusIcon(level)"
+                [alt]="getStatusText(level)"
+                [class.status-icon]="level.unlocked"
+                [class.lock-icon]="!level.unlocked"
+              />
+            </a>
+
+            @if (level.id !== 5) {
+              <p class="arrow">←</p>
+            }
+          }
+        </div>
+      </div>
+    </section>
+  </section>
+</main>

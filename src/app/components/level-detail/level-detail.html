@@ -1,0 +1,42 @@
+<main class="level-detail-page">
+  @if (level) {
+    <section class="level-card">
+      <h1 class="level-title">{{ level.title }}</h1>
+
+      <p class="level-description">
+        {{ level.description }}
+      </p>
+
+      <h2 class="section-title">Forklaring</h2>
+      <p class="level-text">{{ level.explanation }}</p>
+
+      <h2 class="section-title">Kodeeksempel</h2>
+      <pre class="code-box">{{ level.codeExample }}</pre>
+
+      <h2 class="section-title">Opgave</h2>
+      <p class="level-text">{{ level.task }}</p>
+
+      <div class="level-buttons">
+        <a routerLink="/levels" class="button secondary-button">
+          Tilbage
+        </a>
+
+        <button type="button" class="button primary-button" (click)="completeLevel()">
+          Klar level
+        </button>
+      </div>
+    </section>
+
+    @if (showResult) {
+      <app-result-modal></app-result-modal>
+    }
+  } @else {
+    <section class="level-card">
+      <h1 class="level-title">Level blev ikke fundet</h1>
+
+      <a routerLink="/levels" class="button primary-button">
+        Tilbage
+      </a>
+    </section>
+  }
+</main>
