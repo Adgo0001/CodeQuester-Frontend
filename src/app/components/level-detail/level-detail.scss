@@ -118,8 +118,8 @@
 }
 
 .error-text {
-  min-height: 24px;
-  margin-top: 15px;
+  height: 24px;
+  margin: 15px 0 0;
   color: #c1121f;
   font-weight: bold;
 }
@@ -144,10 +144,12 @@
 }
 
 .hint-options {
+  height: 42px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 12px;
+  align-items: center;
 }
 
 .hint-options span {
@@ -155,11 +157,5 @@
   border: 2px solid #1689d9;
   border-radius: 8px;
   background-color: #e8f4ff;
-  font-weight: bold;
-}
-
-.error-text {
-  margin-top: 15px;
-  color: #c1121f;
   font-weight: bold;
 }

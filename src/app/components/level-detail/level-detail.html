@@ -30,19 +30,17 @@
           Hint 💡
         </button>
 
-        @if (showHint && task.hintOptions) {
-          <div class="hint-options">
+        <div class="hint-options">
+          @if (showHint && task.hintOptions) {
             @for (hint of task.hintOptions; track hint) {
               <span>{{ hint }}</span>
             }
-          </div>
-        }
-
-        @if (errorText) {
-          <p class="error-text">
-            {{ errorText }}
-          </p>
-        }
+          }
+        </div>
+      
+        <p class="error-text">
+          {{ errorText }}
+        </p>
       }
 
       <div class="level-buttons">
