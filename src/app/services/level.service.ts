@@ -47,7 +47,7 @@ export class LevelService {
 
     if (levelId > currentLevel) {
       progress[language] = levelId;
-      localStorage.setItem(this.progressKey, JSON.stringify(progress));
+      this.saveProgress(progress);
     }
   }
 
@@ -62,6 +62,14 @@ export class LevelService {
       return {};
     }
 
-    return JSON.parse(savedProgress);
+    try {
+      return JSON.parse(savedProgress);
+    } catch {
+      return {};
+    }
+  }
+
+  private saveProgress(progress: Record<string, number>): void {
+    localStorage.setItem(this.progressKey, JSON.stringify(progress));
   }
 }

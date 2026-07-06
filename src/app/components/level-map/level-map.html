@@ -4,14 +4,11 @@
       Tilbage til hovedsiden
     </a>
   </div>
+
   <section class="level-map">
     <header class="top">
       <div class="top-left">
-        <img
-          src="/Icons/CodeQuester.png"
-          alt="CodeQuester logo"
-          class="logo"
-        />
+        <img src="/Icons/CodeQuester.png" alt="CodeQuester logo" class="logo" />
 
         <select (change)="switchLanguage($event)">
           @for (language of languages; track language) {

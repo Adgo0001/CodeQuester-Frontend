@@ -11,13 +11,12 @@ import { LevelService } from '../../services/level.service';
   styleUrl: './level-map.scss',
 })
 export class LevelMap {
-  private readonly languageKey = 'codequester-language';
-
-  chosenLanguage = localStorage.getItem(this.languageKey) ?? 'Java';
+  chosenLanguage = '';
   languages: string[] = [];
   levels: Level[] = [];
 
   constructor(private levelService: LevelService) {
+    this.chosenLanguage = this.levelService.getSavedLanguage();
     this.languages = this.levelService.getLanguages();
     this.loadLevels();
   }
@@ -26,8 +25,7 @@ export class LevelMap {
     const select = event.target as HTMLSelectElement;
 
     this.chosenLanguage = select.value;
-    localStorage.setItem(this.languageKey, this.chosenLanguage);
-
+    this.levelService.saveLanguage(this.chosenLanguage);
     this.loadLevels();
   }
 
@@ -64,7 +62,7 @@ export class LevelMap {
   }
 
   getBottomLevels(): Level[] {
-    return this.levels.slice(4, 8).reverse();
+    return this.levels.slice(4).reverse();
   }
 
   private loadLevels(): void {

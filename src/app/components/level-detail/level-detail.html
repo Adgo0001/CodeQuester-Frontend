@@ -10,52 +10,67 @@
       <h2 class="section-title">Forklaring</h2>
       <p class="level-text">{{ level.explanation }}</p>
 
-      @if (task) {
-        <h2 class="section-title">Opgavebeskrivelse</h2>
-        <p class="level-text">{{ task.description }}</p>
+      <h2 class="section-title">Opgavebeskrivelse</h2>
+      <p class="level-text">{{ level.task.description }}</p>
 
-        <h2 class="section-title">Spørgsmål</h2>
-        <p class="level-text">{{ task.question }}</p>
+      <h2 class="section-title">Spørgsmål</h2>
+      <p class="level-text">{{ level.task.question }}</p>
 
-        <pre class="code-box">{{ getCode() }}</pre>
+      <pre class="code-box">{{ getCode() }}</pre>
 
+      @if (level.task.answerType === 'writeAnswer') {
         <input
           class="answer-input"
           type="text"
           placeholder="Skriv dit svar her..."
           [(ngModel)]="answer"
         />
+      }
 
-        <button type="button" class="hint-button" (click)="showHint = !showHint">
-          Hint 💡
-        </button>
-
-        <div class="hint-options">
-          @if (showHint && task.hintOptions) {
-            @for (hint of task.hintOptions; track hint) {
-              <span>{{ hint }}</span>
-            }
+      @if (level.task.answerType === 'chooseAnswer') {
+        <div class="answer-options">
+          @for (option of level.task.answerOptions; track option) {
+            <button
+              type="button"
+              class="answer-choice"
+              [class.selected]="answer === option"
+              (click)="chooseAnswer(option)"
+            >
+              {{ option }}
+            </button>
           }
         </div>
-      
-        <p class="error-text">
-          {{ errorText }}
-        </p>
       }
+
+      <button type="button" class="hint-button" (click)="showHint = !showHint">
+        Hint 💡
+      </button>
+
+      <div class="hint-options">
+        @if (showHint && level.task.answerOptions) {
+          @for (option of level.task.answerOptions; track option) {
+            <span>{{ option }}</span>
+          }
+        }
+      </div>
+
+      <p class="error-text">
+        {{ errorText }}
+      </p>
 
       <div class="level-buttons">
         <a routerLink="/levels" class="button secondary-button">
           Tilbage
         </a>
 
-        <button type="button" class="button primary-button" (click)="completeLevel()">
+        <button type="button" class="button primary-button" (click)="checkAnswer()">
           Tjek svar
         </button>
       </div>
     </section>
-
-    @if (showResult) {
-      <app-result-modal></app-result-modal>
-    }
   }
 </main>
+
+@if (showResult) {
+  <app-result-modal></app-result-modal>
+}

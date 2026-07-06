@@ -1,9 +1,12 @@
+export type AnswerType = 'writeAnswer' | 'chooseAnswer';
+
 export type Task = {
+  answerType: AnswerType;
   description: string;
   question: string;
   code: string;
   correctAnswer: string;
-  hintOptions?: string[];
+  answerOptions?: string[];
 };
 
 export type Level = {
@@ -12,7 +15,7 @@ export type Level = {
   title: string;
   description: string;
   explanation: string;
-  tasks: Task[];
+  task: Task;
   unlocked: boolean;
   completed: boolean;
 };
