@@ -10,11 +10,40 @@
       <h2 class="section-title">Forklaring</h2>
       <p class="level-text">{{ level.explanation }}</p>
 
-      <h2 class="section-title">Kodeeksempel</h2>
-      <pre class="code-box">{{ level.codeExample }}</pre>
+      @if (task) {
+        <h2 class="section-title">Opgavebeskrivelse</h2>
+        <p class="level-text">{{ task.description }}</p>
 
-      <h2 class="section-title">Opgave</h2>
-      <p class="level-text">{{ level.task }}</p>
+        <h2 class="section-title">Spørgsmål</h2>
+        <p class="level-text">{{ task.question }}</p>
+
+        <pre class="code-box">{{ getCode() }}</pre>
+
+        <input
+          class="answer-input"
+          type="text"
+          placeholder="Skriv dit svar her..."
+          [(ngModel)]="answer"
+        />
+
+        <button type="button" class="hint-button" (click)="showHint = !showHint">
+          Hint 💡
+        </button>
+
+        @if (showHint && task.hintOptions) {
+          <div class="hint-options">
+            @for (hint of task.hintOptions; track hint) {
+              <span>{{ hint }}</span>
+            }
+          </div>
+        }
+
+        @if (errorText) {
+          <p class="error-text">
+            {{ errorText }}
+          </p>
+        }
+      }
 
       <div class="level-buttons">
         <a routerLink="/levels" class="button secondary-button">
@@ -22,7 +51,7 @@
         </a>
 
         <button type="button" class="button primary-button" (click)="completeLevel()">
-          Klar level
+          Tjek svar
         </button>
       </div>
     </section>
@@ -30,13 +59,5 @@
     @if (showResult) {
       <app-result-modal></app-result-modal>
     }
-  } @else {
-    <section class="level-card">
-      <h1 class="level-title">Level blev ikke fundet</h1>
-
-      <a routerLink="/levels" class="button primary-button">
-        Tilbage
-      </a>
-    </section>
   }
 </main>

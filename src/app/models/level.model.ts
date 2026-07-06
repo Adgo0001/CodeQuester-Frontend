@@ -1,7 +1,9 @@
 export type Task = {
+  description: string;
   question: string;
-  options: string[];
+  code: string;
   correctAnswer: string;
+  hintOptions?: string[];
 };
 
 export type Level = {
@@ -10,7 +12,6 @@ export type Level = {
   title: string;
   description: string;
   explanation: string;
-  codeExample: string;
   tasks: Task[];
   unlocked: boolean;
   completed: boolean;
