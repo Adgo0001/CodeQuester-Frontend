@@ -34,22 +34,6 @@
   color: #1f2937;
 }
 
-.back-button {
-  width: 180px;
-  height: 48px;
+.info-card .button {
   margin: 20px auto 0;
-  display: grid;
-  place-items: center;
-  border: 2px solid #1689d9;
-  border-radius: 8px;
-  background-color: #1689d9;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  opacity: 0.85;
 }

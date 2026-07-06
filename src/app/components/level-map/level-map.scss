@@ -1,43 +1,20 @@
 .level-page {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
+  display: grid;
+  place-items: center;
   padding: 25px;
 }
 
-.top-button {
+.top-button,
+.level-map {
   width: 75vw;
-  display: flex;
-  justify-content: flex-start;
 }
 
-.button {
-  width: 210px;
-  height: 45px;
-  display: grid;
-  place-items: center;
-  border: 2px solid #1689d9;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.secondary-button {
-  background-color: white;
-  color: #1689d9;
-}
-
-.button:hover {
-  opacity: 0.85;
+.top-button {
+  margin-bottom: 15px;
 }
 
 .level-map {
-  width: 75vw;
   height: 75vh;
   padding: 25px 35px;
   border: 3px solid #111;
@@ -47,15 +24,18 @@
   flex-direction: column;
 }
 
-.top {
+.top,
+.top-left,
+.level-row {
   display: flex;
   align-items: center;
+}
+
+.top {
   justify-content: space-between;
 }
 
 .top-left {
-  display: flex;
-  align-items: center;
   gap: 25px;
 }
 
@@ -86,9 +66,7 @@ select {
 }
 
 .level-row {
-  display: flex;
   justify-content: center;
-  align-items: center;
   gap: 60px;
 }
 
@@ -129,33 +107,38 @@ select {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.status-icon {
+.status-icon,
+.lock-icon {
   position: absolute;
+}
+
+.status-icon {
   top: -25px;
   right: -13px;
   width: 32px;
 }
 
 .lock-icon {
-  position: absolute;
   inset: 0;
   z-index: 2;
   width: 48px;
   margin: auto;
 }
 
-.arrow {
-  margin: 0;
+.arrow,
+.arrow-down {
   font-size: 80px;
   color: #111;
 }
 
+.arrow {
+  margin: 0;
+}
+
 .arrow-down {
-  width: 100%;
   padding-right: 120px;
   margin: -10px 0;
   text-align: right;
-  font-size: 80px;
 }
 
 .level:hover {

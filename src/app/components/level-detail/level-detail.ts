@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-level-detail',
-  imports: [RouterLink, ResultModal, ResultModal, FormsModule],
+  imports: [RouterLink, ResultModal, FormsModule],
   templateUrl: './level-detail.html',
   styleUrl: './level-detail.scss',
 })
