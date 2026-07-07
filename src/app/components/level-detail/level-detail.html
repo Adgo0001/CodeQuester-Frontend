@@ -1,5 +1,5 @@
 <main class="level-detail-page">
-  @if (level) {
+  @if (level && task) {
     <section class="level-card">
       <h1 class="level-title">{{ level.title }}</h1>
 
@@ -11,44 +11,27 @@
       <p class="level-text">{{ level.explanation }}</p>
 
       <h2 class="section-title">Opgavebeskrivelse</h2>
-      <p class="level-text">{{ level.task.description }}</p>
+      <p class="level-text">{{ task.description }}</p>
 
       <h2 class="section-title">Spørgsmål</h2>
-      <p class="level-text">{{ level.task.question }}</p>
+      <p class="level-text">{{ task.question }}</p>
 
       <pre class="code-box">{{ getCode() }}</pre>
 
-      @if (level.task.answerType === 'writeAnswer') {
-        <input
-          class="answer-input"
-          type="text"
-          placeholder="Skriv dit svar her..."
-          [(ngModel)]="answer"
-        />
-      }
-
-      @if (level.task.answerType === 'chooseAnswer') {
-        <div class="answer-options">
-          @for (option of level.task.answerOptions; track option) {
-            <button
-              type="button"
-              class="answer-choice"
-              [class.selected]="answer === option"
-              (click)="chooseAnswer(option)"
-            >
-              {{ option }}
-            </button>
-          }
-        </div>
-      }
+      <input
+        class="answer-input"
+        type="text"
+        placeholder="Skriv dit svar her..."
+        [(ngModel)]="answer"
+      />
 
       <button type="button" class="hint-button" (click)="showHint = !showHint">
         Hint 💡
       </button>
 
       <div class="hint-options">
-        @if (showHint && level.task.answerOptions) {
-          @for (option of level.task.answerOptions; track option) {
+        @if (showHint && task.hintOptions) {
+          @for (option of task.hintOptions; track option) {
             <span>{{ option }}</span>
           }
         }

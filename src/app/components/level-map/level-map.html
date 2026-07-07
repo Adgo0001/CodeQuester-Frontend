@@ -28,57 +28,65 @@
 
     <section class="levels">
       <div class="level-content">
-        <div class="level-row">
-          @for (level of getTopLevels(); track level.id) {
-            <a
-              class="level"
-              [class.locked]="!level.unlocked"
-              [class.unlocked]="level.unlocked"
-              [class.completed]="level.completed"
-              [routerLink]="level.unlocked ? ['/levels', chosenLanguage, level.id] : null"
-            >
-              {{ level.id }}
+        @if (levels.length === 0) {
+          <p class="no-levels">Der er ingen levels endnu.</p>
+        }
 
-              <img
-                [src]="getStatusIcon(level)"
-                [alt]="getStatusText(level)"
-                [class.status-icon]="level.unlocked"
-                [class.lock-icon]="!level.unlocked"
-              />
-            </a>
+        @if (getTopLevels().length > 0) {
+          <div class="level-row">
+            @for (level of getTopLevels(); track level.id; let last = $last) {
+              <a
+                class="level"
+                [class.locked]="!level.unlocked"
+                [class.unlocked]="level.unlocked"
+                [class.completed]="level.completed"
+                [routerLink]="level.unlocked ? ['/levels', level.language, level.id] : null"
+              >
+                {{ level.id }}
 
-            @if (level.id !== 4) {
-              <p class="arrow">→</p>
+                <img
+                  [src]="getStatusIcon(level)"
+                  [alt]="getStatusText(level)"
+                  [class.status-icon]="level.unlocked"
+                  [class.lock-icon]="!level.unlocked"
+                />
+              </a>
+
+              @if (!last) {
+                <p class="arrow">→</p>
+              }
             }
-          }
-        </div>
+          </div>
+        }
 
-        <div class="arrow-down">↓</div>
+        @if (getBottomLevels().length > 0) {
+          <div class="arrow-down">↓</div>
 
-        <div class="level-row">
-          @for (level of getBottomLevels(); track level.id) {
-            <a
-              class="level"
-              [class.locked]="!level.unlocked"
-              [class.unlocked]="level.unlocked"
-              [class.completed]="level.completed"
-              [routerLink]="level.unlocked ? ['/levels', chosenLanguage, level.id] : null"
-            >
-              {{ level.id }}
+          <div class="level-row">
+            @for (level of getBottomLevels(); track level.id; let last = $last) {
+              <a
+                class="level"
+                [class.locked]="!level.unlocked"
+                [class.unlocked]="level.unlocked"
+                [class.completed]="level.completed"
+                [routerLink]="level.unlocked ? ['/levels', level.language, level.id] : null"
+              >
+                {{ level.id }}
 
-              <img
-                [src]="getStatusIcon(level)"
-                [alt]="getStatusText(level)"
-                [class.status-icon]="level.unlocked"
-                [class.lock-icon]="!level.unlocked"
-              />
-            </a>
+                <img
+                  [src]="getStatusIcon(level)"
+                  [alt]="getStatusText(level)"
+                  [class.status-icon]="level.unlocked"
+                  [class.lock-icon]="!level.unlocked"
+                />
+              </a>
 
-            @if (level.id !== 5) {
-              <p class="arrow">←</p>
+              @if (!last) {
+                <p class="arrow">←</p>
+              }
             }
-          }
-        </div>
+          </div>
+        }
       </div>
     </section>
   </section>

@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { LEVELS } from '../data/level.data';
 import { Level } from '../models/level.model';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LevelService {
-  private readonly progressKey = 'codequester-progress';
   private readonly languageKey = 'codequester-language';
 
+  constructor(private apiService: ApiService) {}
+
   getLanguages(): string[] {
-    return [...new Set(LEVELS.map(level => level.language))];
+    return this.apiService.getLanguages();
   }
 
   getSavedLanguage(): string {
@@ -22,54 +24,16 @@ export class LevelService {
     localStorage.setItem(this.languageKey, language);
   }
 
-  getLevelsByLanguage(language: string): Level[] {
-    const completedLevel = this.getCompletedLevel(language);
-
-    return LEVELS
-      .filter(level => level.language === language)
-      .map(level => ({
-        ...level,
-        completed: level.id <= completedLevel,
-        unlocked: level.id <= completedLevel + 1
-      }));
+  getLevelsByLanguage(language: string): Observable<Level[]> {
+    return this.apiService.getLevelsByLanguage(language);
   }
 
-  getLevel(language: string, levelId: number): Level | undefined {
-    return this.getLevelsByLanguage(language)
-      .find(level => level.id === levelId);
+  getLevel(language: string, levelId: number): Observable<Level> {
+    return this.apiService.getLevel(language, levelId);
   }
 
-  completeLevel(language: string, levelId: number): void {
-    const progress = this.getProgress();
-    const currentLevel = progress[language] ?? 0;
-
+  completeLevel(language: string, levelId: number): Observable<void> {
     this.saveLanguage(language);
-
-    if (levelId > currentLevel) {
-      progress[language] = levelId;
-      this.saveProgress(progress);
-    }
-  }
-
-  private getCompletedLevel(language: string): number {
-    return this.getProgress()[language] ?? 0;
-  }
-
-  private getProgress(): Record<string, number> {
-    const savedProgress = localStorage.getItem(this.progressKey);
-
-    if (!savedProgress) {
-      return {};
-    }
-
-    try {
-      return JSON.parse(savedProgress);
-    } catch {
-      return {};
-    }
-  }
-
-  private saveProgress(progress: Record<string, number>): void {
-    localStorage.setItem(this.progressKey, JSON.stringify(progress));
+    return this.apiService.completeLevel(language, levelId);
   }
 }

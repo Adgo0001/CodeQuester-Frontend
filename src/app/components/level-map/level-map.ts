@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Level } from '../../models/level.model';
@@ -15,9 +15,19 @@ export class LevelMap {
   languages: string[] = [];
   levels: Level[] = [];
 
-  constructor(private levelService: LevelService) {
-    this.chosenLanguage = this.levelService.getSavedLanguage();
+  constructor(
+    private levelService: LevelService, 
+    private cdr: ChangeDetectorRef
+  ) {
     this.languages = this.levelService.getLanguages();
+
+    const savedLanguage = this.levelService.getSavedLanguage();
+
+    this.chosenLanguage = this.languages.includes(savedLanguage)
+      ? savedLanguage
+      : this.languages[0];
+
+    this.levelService.saveLanguage(this.chosenLanguage);
     this.loadLevels();
   }
 
@@ -66,6 +76,15 @@ export class LevelMap {
   }
 
   private loadLevels(): void {
-    this.levels = this.levelService.getLevelsByLanguage(this.chosenLanguage);
+    this.levelService.getLevelsByLanguage(this.chosenLanguage)
+      .subscribe({
+        next: levels => {
+          this.levels = levels;
+          this.cdr.detectChanges();
+        },
+        error: error => {
+          console.log('Fejl ved hentning af levels:', error);
+        }
+      });
   }
 }

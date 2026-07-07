@@ -46,6 +46,7 @@
 select {
   width: 110px;
   height: 36px;
+  margin-top: 18px;
   border: 3px solid #111;
   border-radius: 6px;
 }
@@ -147,4 +148,10 @@ select {
 
 .locked:hover {
   transform: none;
+}
+
+.no-levels {
+  font-size: 24px;
+  color: #111;
+  text-align: center;
 }
