@@ -9,7 +9,7 @@ export class LanguageSelector {
   @Input() languages: string[] = [];
   @Input() chosenLanguage = '';
 
-  @Output() languageChanged = new EventEmitter<string>();
+  @Output() readonly languageChanged = new EventEmitter<string>();
 
   changeLanguage(event: Event): void {
     const select = event.target as HTMLSelectElement;

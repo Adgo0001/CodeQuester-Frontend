@@ -1,36 +1,64 @@
+.levels {
+  width: 100%;
+}
+
+.level-grid {
+  min-height: 450px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 160px);
+  grid-template-rows: repeat(2, 110px);
+  justify-content: center;
+  align-content: center;
+  gap: 80px 90px;
+}
+
 .level {
   position: relative;
-
   width: 160px;
   height: 110px;
 
   display: grid;
   place-items: center;
 
-  border: 3px solid #22c55e;
+  border: 3px solid var(--green);
   border-radius: 16px;
-
-  background-color: white;
-  color: #111;
+  background: var(--white);
+  color: var(--border);
 
   font-size: 50px;
   text-decoration: none;
 }
 
-.level-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 160px);
-  grid-template-rows: repeat(2, 110px);
-  gap: 80px 90px;
-  justify-content: center;
-  align-content: center;
-  min-height: 450px;
+.level:hover {
+  transform: scale(1.05);
 }
 
-.level:nth-child(5),
-.level:nth-child(6),
-.level:nth-child(7),
-.level:nth-child(8) {
+.level.completed {
+  border-color: var(--blue);
+  background: var(--light-blue);
+}
+
+.level.locked,
+.level.missing {
+  border-color: #999;
+  background: var(--locked);
+  color: #777;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.level.locked {
+  opacity: 0.6;
+}
+
+.level-text {
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+}
+
+.level:nth-child(n + 5) {
   grid-row: 2;
 }
 
@@ -48,41 +76,4 @@
 
 .level:nth-child(8) {
   grid-column: 1;
-}
-
-.level.missing {
-  border-color: #bbb;
-  background-color: #eee;
-  color: #999;
-  cursor: default;
-  pointer-events: none;
-}
-
-.level-text {
-  position: absolute;
-  bottom: 6px;
-  font-size: 12px;
-}
-
-.levels {
-  width: 100%;
-}
-
-.level:hover {
-  transform: scale(1.05);
-}
-
-.level.completed {
-  border-color: #1689d9;
-  background-color: #e8f4ff;
-}
-
-.level.locked {
-  border-color: #999;
-  background-color: #ddd;
-  color: #777;
-  opacity: 0.6;
-
-  cursor: not-allowed;
-  pointer-events: none;
 }

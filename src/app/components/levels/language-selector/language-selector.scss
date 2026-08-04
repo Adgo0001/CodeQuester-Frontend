@@ -7,9 +7,14 @@
 select {
   width: 120px;
   height: 36px;
-  border: 2px solid #111;
+  padding: 0 8px;
+
+  border: 2px solid var(--border);
   border-radius: 6px;
-  background-color: white;
+  background: var(--white);
+
+  font: inherit;
+  cursor: pointer;
 }
 
 .language-logo {

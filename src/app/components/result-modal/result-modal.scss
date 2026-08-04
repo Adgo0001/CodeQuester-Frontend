@@ -1,19 +1,21 @@
 .modal-background {
   position: fixed;
   inset: 0;
+  z-index: 10;
+
   display: grid;
   place-items: center;
-  background-color: rgba(7, 31, 69, 0.55);
-  z-index: 10;
+
+  background: rgba(7, 31, 69, 0.55);
 }
 
 .result-card {
-  width: 420px;
-  max-width: 90%;
+  width: min(420px, 90%);
   padding: 35px;
-  border: 2px solid #1689d9;
+
+  border: 2px solid var(--blue);
   border-radius: 18px;
-  background-color: white;
+  background: var(--white);
   text-align: center;
 }
 
@@ -21,30 +23,33 @@
   width: 70px;
   height: 70px;
   margin: 0 auto 20px;
+
   display: grid;
   place-items: center;
+
   border-radius: 50%;
-  background-color: #1689d9;
-  color: white;
+  background: var(--blue);
+  color: var(--white);
+
   font-size: 26px;
   font-weight: bold;
 }
 
 .result-title {
   margin: 0 0 15px;
-  color: #071f45;
+  color: var(--dark-blue);
 }
 
 .result-text {
   margin: 0 0 25px;
+  color: var(--text);
   font-size: 17px;
   line-height: 1.5;
-  color: #1f2937;
 }
 
 .result-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
   flex-wrap: wrap;
+  gap: 15px;
 }

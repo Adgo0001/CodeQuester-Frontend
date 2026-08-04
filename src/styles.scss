@@ -1,9 +1,22 @@
+:root {
+  --blue: #1689d9;
+  --dark-blue: #071f45;
+  --text: #1f2937;
+  --border: #111;
+  --green: #22c55e;
+  --light-blue: #e8f4ff;
+  --locked: #ddd;
+  --error: #c62828;
+  --white: #fff;
+}
+
 html,
 body {
   min-height: 100%;
   margin: 0;
   background: linear-gradient(135deg, #ceecff, #ebf6ff, #c3ffe9);
   font-family: Arial, sans-serif;
+  color: var(--text);
 }
 
 * {
@@ -14,24 +27,29 @@ body {
   min-width: 160px;
   height: 45px;
   padding: 0 18px;
-  display: grid;
+
+  display: inline-grid;
   place-items: center;
-  border: 2px solid #000000;
+
+  border: 2px solid var(--blue);
   border-radius: 8px;
-  font-size: 16px;
+  background: var(--white);
+  color: var(--blue);
+
+  font: inherit;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
 }
 
 .primary-button {
-  background-color: #1689d9;
-  color: white;
+  background: var(--blue);
+  color: var(--white);
 }
 
 .secondary-button {
-  background-color: white;
-  color: #1689d9;
+  background: var(--white);
+  color: var(--blue);
 }
 
 .button:hover {
@@ -40,18 +58,48 @@ body {
 
 .page-layout {
   min-height: 100vh;
+  padding: 30px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
 }
 
 .top-button {
   width: min(1300px, 90vw);
   margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
 }
 
-.top-button .button {
-  width: fit-content;
+
+/* Loader animation from https://css-loaders.com/spinner/ */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader::before,
+.loader::after {    
+  content:"";
+  grid-area: 1/1;
+  --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 12px 12px;
+  animation: l12 1s infinite;
+}
+.loader::before {
+  margin: 4px;
+  filter: hue-rotate(45deg);
+  background-size: 8px 8px;
+  animation-timing-function: linear
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
 }

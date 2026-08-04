@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Level } from '../../../models/level.model';
 import { LevelService } from '../../../services/level.service';
 import { ResultModal } from '../../result-modal/result-modal';
+import { delay, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-level-detail',
@@ -14,6 +15,7 @@ import { ResultModal } from '../../result-modal/result-modal';
 })
 export class LevelDetail {
   level = signal<Level | undefined>(undefined);
+  loading = signal(false);
 
   answer = '';
   errorText = '';
@@ -82,11 +84,23 @@ export class LevelDetail {
       return;
     }
 
+    this.loading.set(true);
+
     this.levelService
       .getLevel(language, id)
+      .pipe(
+        delay(2000),
+        finalize(() => this.loading.set(false))
+      )
       .subscribe({
-        next: level => this.level.set(level),
-        error: error => console.log('Level kunne ikke hentes:', error)
+        next: level => {
+          this.level.set(level);
+          this.loading.set(false);
+        },
+        error: error => {
+          console.log('Level kunne ikke hentes:', error);
+          this.loading.set(false);
+        }
       });
   }
 }

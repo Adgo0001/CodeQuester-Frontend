@@ -5,25 +5,23 @@
 }
 
 .home-content {
-  width: 100%;
-  max-width: 900px;
+  width: min(900px, 100%);
   text-align: center;
 }
 
 .home-logo {
-  width: 520px;
-  max-width: 90%;
+  width: min(520px, 90%);
 }
 
 .home-subtitle {
   margin: 20px 0 60px;
+  color: var(--dark-blue);
   font-size: 28px;
-  color: #10385f;
 }
 
 .home-buttons {
   display: flex;
   justify-content: center;
-  gap: 35px;
   flex-wrap: wrap;
+  gap: 35px;
 }

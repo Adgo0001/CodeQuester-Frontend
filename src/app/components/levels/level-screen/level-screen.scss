@@ -3,18 +3,29 @@
   min-height: 65vh;
   padding: 25px 35px;
 
-  border: 3px solid #111;
+  display: flex;
+  flex-direction: column;
+
+  border: 3px solid var(--border);
   border-radius: 25px;
-  background-color: white;
+  background: var(--white);
 }
 
 .top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  gap: 30px;
 }
 
 .logo {
-  width: 400px;
+  width: min(400px, 50%);
+}
+
+.loading-area {
+  flex: 1;
+  min-height: 350px;
+
+  display: grid;
+  place-items: center;
 }

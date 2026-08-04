@@ -1,11 +1,10 @@
 .level-card {
-  position: relative;
   width: min(1300px, 90vw);
   padding: 40px;
 
-  border: 3px solid #111;
+  border: 3px solid var(--border);
   border-radius: 24px;
-  background-color: white;
+  background: var(--white);
 }
 
 .logo {
@@ -22,11 +21,11 @@
 
 .description-box,
 .task-box {
-  padding: 30px;
-  border: 3px solid #111;
-  border-radius: 22px;
   height: 100%;
-  box-sizing: border-box;
+  padding: 30px;
+
+  border: 3px solid var(--border);
+  border-radius: 22px;
 }
 
 .description-box h2,
@@ -41,18 +40,19 @@
 
 .code-box {
   padding: 18px;
+
   border-radius: 10px;
-  background-color: #111;
-  color: white;
+  background: var(--border);
+  color: var(--white);
   white-space: pre-wrap;
 }
 
 .answer-input {
   width: 100%;
-  padding: 12px;
   margin-top: 15px;
+  padding: 12px;
 
-  border: 2px solid #111;
+  border: 2px solid var(--border);
   border-radius: 8px;
   font: inherit;
 }
@@ -64,28 +64,30 @@
 }
 
 .hint-options {
+  margin-top: 12px;
   display: grid;
   gap: 10px;
-  margin-top: 12px;
 }
 
 .hint-options button {
   padding: 10px;
-  border: 2px solid #111;
+
+  border: 2px solid var(--border);
   border-radius: 8px;
-  background-color: white;
+  background: var(--white);
+
   text-align: left;
   cursor: pointer;
 }
 
 .error-text {
-  color: #c62828;
+  color: var(--error);
 }
 
 .level-buttons {
-  display: flex;
-  justify-content: space-between;
   margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .language-logo {

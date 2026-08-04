@@ -17,16 +17,4 @@ export class LevelMap {
   findLevel(levelNumber: number): Level | undefined {
     return this.levels.find(level => level.id === levelNumber);
   }
-
-  getStatusIcon(level: Level): string {
-    if (level.completed) {
-      return '/Icons/Checked-logo.png';
-    }
-
-    return '/Icons/Locked-Padlock.png';
-  }
-
-  getStatusText(level: Level): string {
-    return level.completed ? 'Gennemført' : 'Låst';
-  }
 }

@@ -1,7 +1,7 @@
 <main class="page-layout">
   <div class="top-button">
     <a routerLink="/" class="button primary-button"> Tilbage til hovedsiden </a>
-    <button type="button" class="button secondary-button" (click)="resetLevels()"> RESET </button>
+    <button type="button" class="button secondary-button" [disabled]="loading()" (click)="resetLevels()"> RESET </button>
   </div>
 
   <section class="level-card">
@@ -15,6 +15,12 @@
       />
     </header>
 
-    <app-level-map [levels]="levels()" />
+    @if (loading()) {
+      <div class="loading-area">
+        <div class="loader"></div>
+      </div>
+    } @else {
+      <app-level-map [levels]="levels()" />
+    }
   </section>
 </main>
