@@ -1,0 +1,55 @@
+<main class="page-layout">
+  @if (level(); as selectedLevel) {
+    @if (task; as selectedTask) {
+      <div class="top-button">
+        <a routerLink="/levels" class="button secondary-button"> Tilbage </a>
+      </div>
+
+      <section class="level-card">
+        <img src="/Icons/CodeQuester.png" alt="CodeQuester logo" class="logo"/>
+
+        <div class="level-content">
+          <section class="description-box">
+            <h2>Opgavebeskrivelse</h2>
+
+            <p>{{ selectedLevel.description }}</p>
+            <p>{{ selectedLevel.explanation }}</p>
+          </section>
+
+          <img [src]="getLanguageLogo()" [alt]="selectedLevel.language + ' logo'" class="language-logo"/>
+
+          <section class="task-box">
+            <h2>Spørgsmål</h2>
+            <p>{{ selectedTask.question }}</p>
+
+            <pre class="code-box">{{ getCode() }}</pre>
+
+            <input type="text" class="answer-input" placeholder="Skriv dit svar her..." [(ngModel)]="answer"/>
+
+            <button type="button" class="hint-button" (click)="showHint = !showHint"> Hint 💡 </button>
+
+            @if (showHint) {
+              <div class="hint-options">
+                @for (option of selectedTask.hintOptions; track option) {
+                  <button type="button" (click)="answer = option"> {{ option }} </button>
+                }
+              </div>
+            }
+
+            @if (errorText) {
+              <p class="error-text">{{ errorText }}</p>
+            }
+
+            <div class="level-buttons">
+              <button type="button" class="button primary-button" (click)="checkAnswer()"> Tjek svar </button>
+            </div>
+          </section>
+        </div>
+      </section>
+    }
+  }
+</main>
+
+@if (showResult()) {
+  <app-result-modal></app-result-modal>
+}

@@ -1,0 +1,11 @@
+<div class="language-selector">
+  <select [value]="chosenLanguage" (change)="changeLanguage($event)">
+    @for (language of languages; track language) {
+      <option [value]="language">
+        {{ language }}
+      </option>
+    }
+  </select>
+
+  <img [src]="getLanguageLogo()" [alt]="chosenLanguage + ' logo'" class="language-logo"/>
+</div>

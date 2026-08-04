@@ -1,0 +1,25 @@
+<section class="levels">
+  <div class="level-grid">
+    @for (levelNumber of levelNumbers; track levelNumber) {
+      @let level = findLevel(levelNumber);
+
+      <a
+        class="level"
+        [class.locked]="level && !level.unlocked"
+        [class.missing]="!level"
+        [class.completed]="level?.completed"
+        [routerLink]="
+          level?.unlocked
+            ? ['/levels', level.language, level.id]
+            : null
+        "
+      >
+        {{ levelNumber }}
+
+        @if (!level) {
+          <span class="level-text">Kommer snart</span>
+        }
+      </a>
+    }
+  </div>
+</section>

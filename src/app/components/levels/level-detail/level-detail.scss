@@ -1,0 +1,95 @@
+.level-card {
+  position: relative;
+  width: min(1300px, 90vw);
+  padding: 40px;
+
+  border: 3px solid #111;
+  border-radius: 24px;
+  background-color: white;
+}
+
+.logo {
+  width: 220px;
+  margin-bottom: 25px;
+}
+
+.level-content {
+  display: grid;
+  grid-template-columns: 1fr 120px 1.4fr;
+  align-items: stretch;
+  gap: 35px;
+}
+
+.description-box,
+.task-box {
+  padding: 30px;
+  border: 3px solid #111;
+  border-radius: 22px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.description-box h2,
+.task-box h2 {
+  margin-top: 0;
+}
+
+.description-box p,
+.task-box p {
+  line-height: 1.5;
+}
+
+.code-box {
+  padding: 18px;
+  border-radius: 10px;
+  background-color: #111;
+  color: white;
+  white-space: pre-wrap;
+}
+
+.answer-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+
+  border: 2px solid #111;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.hint-button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.hint-options {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.hint-options button {
+  padding: 10px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  background-color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.error-text {
+  color: #c62828;
+}
+
+.level-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.language-logo {
+  width: 100px;
+  justify-self: center;
+  align-self: end;
+}

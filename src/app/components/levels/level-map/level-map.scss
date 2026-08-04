@@ -1,0 +1,88 @@
+.level {
+  position: relative;
+
+  width: 160px;
+  height: 110px;
+
+  display: grid;
+  place-items: center;
+
+  border: 3px solid #22c55e;
+  border-radius: 16px;
+
+  background-color: white;
+  color: #111;
+
+  font-size: 50px;
+  text-decoration: none;
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 160px);
+  grid-template-rows: repeat(2, 110px);
+  gap: 80px 90px;
+  justify-content: center;
+  align-content: center;
+  min-height: 450px;
+}
+
+.level:nth-child(5),
+.level:nth-child(6),
+.level:nth-child(7),
+.level:nth-child(8) {
+  grid-row: 2;
+}
+
+.level:nth-child(5) {
+  grid-column: 4;
+}
+
+.level:nth-child(6) {
+  grid-column: 3;
+}
+
+.level:nth-child(7) {
+  grid-column: 2;
+}
+
+.level:nth-child(8) {
+  grid-column: 1;
+}
+
+.level.missing {
+  border-color: #bbb;
+  background-color: #eee;
+  color: #999;
+  cursor: default;
+  pointer-events: none;
+}
+
+.level-text {
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+}
+
+.levels {
+  width: 100%;
+}
+
+.level:hover {
+  transform: scale(1.05);
+}
+
+.level.completed {
+  border-color: #1689d9;
+  background-color: #e8f4ff;
+}
+
+.level.locked {
+  border-color: #999;
+  background-color: #ddd;
+  color: #777;
+  opacity: 0.6;
+
+  cursor: not-allowed;
+  pointer-events: none;
+}

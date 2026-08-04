@@ -8,20 +8,10 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class LevelService {
-  private readonly languageKey = 'codequester-language';
-
   constructor(private apiService: ApiService) {}
 
   getLanguages(): string[] {
     return this.apiService.getLanguages();
-  }
-
-  getSavedLanguage(): string {
-    return localStorage.getItem(this.languageKey) ?? 'Java';
-  }
-
-  saveLanguage(language: string): void {
-    localStorage.setItem(this.languageKey, language);
   }
 
   getLevelsByLanguage(language: string): Observable<Level[]> {
@@ -33,7 +23,10 @@ export class LevelService {
   }
 
   completeLevel(language: string, levelId: number): Observable<void> {
-    this.saveLanguage(language);
     return this.apiService.completeLevel(language, levelId);
+  }
+
+  resetLevels(language: string): Observable<void> {
+    return this.apiService.resetLevels(language);
   }
 }

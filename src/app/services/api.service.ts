@@ -14,7 +14,7 @@ export class ApiService {
 
   getLanguages(): string[] {
     return ['Java', 'HTML', 'CSS', 'JavaScript'];
-    }
+  }
 
   getLevelsByLanguage(language: string): Observable<Level[]> {
     return this.http.get<Level[]>(`${this.apiUrl}/${language}`);
@@ -26,5 +26,12 @@ export class ApiService {
 
   completeLevel(language: string, levelId: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/${language}/${levelId}/complete`, {});
+  }
+
+  resetLevels(language: string): Observable<void> {
+    return this.http.post<void>(
+      `${this.apiUrl}/${language}/reset`,
+      {}
+    );
   }
 }
